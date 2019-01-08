@@ -1,5 +1,5 @@
 
-import yaml
+from ruamel import yaml
 
 from .exceptions import InvalidLLPSException
 from .constants import (
@@ -94,18 +94,29 @@ class ProjectSchema:
         if not num_sources:
             raise InvalidLLPSException(f'No valid sources present for file {filepath}')
 
+    def add_file(self, file_schema):
+        """Validate and add a file to this ProjectSchema."""
+        self.validate_file(file_schema)
+        self.files.append(file_schema)
+
     def dump(self):
         """Dump this Project Schema to YAML."""
-        my_dict = {}
+        my_dict = yaml.comments.CommentedMap()
         for key in REQUIRED_KEYS:
+            if key in ['files', 'sources']:
+                continue
             my_dict[key] = getattr(self, key)
         for key in OPTIONAL_KEYS:
             try:
-                my_dict[key] = getattr(self, key)
+                val = getattr(self, key)
+                if val:
+                    my_dict[key] = val
             except KeyError:
                 pass
-        return yaml.dump(my_dict)
+        my_dict['sources'] = self.sources
+        my_dict['files'] = self.files
+        return yaml.round_trip_dump(my_dict)
 
     @classmethod
     def from_file(cls, filename):
-        return cls(**yaml.load(open(filename).read()))
+        return cls(**yaml.load(open(filename).read(), Loader=yaml.Loader))

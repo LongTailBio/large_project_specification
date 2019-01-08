@@ -1,14 +1,14 @@
 import setuptools
 
 requirements = [
-    'pyyaml',
+    'ruamel.yaml',
     'click',
 ]
 
 
 setuptools.setup(
     name="llps",
-    version="0.2.0",
+    version="0.3.0",
     url="https://github.com/LongTailBio/large_project_specification",
     author="David C. Danko",
     author_email="dev@longtailbio.com",
