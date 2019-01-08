@@ -16,6 +16,7 @@ A project file may optionally define the following keys:
 - `author_email`, A valid email address for the author
 - `project_website`, A valid URL for the project
 
+A project file should use the extension `.llps.yaml`
 
 ### Sources
 
@@ -30,7 +31,7 @@ Note that `file_schema` may actually be empty in which case it will serve solely
 Files defines the files in the project themselves. Files a list of files. Each file is a map from `source_name -> file_source_schema_implementation` with the schema themselves defined in sources. Files must also include the the following keys:
 
 - `path` A complete path for the file. Must be globally unique within the project (case insensitive). File paths are always interpreted relative to the `project_root`
-- `md5` The md5 sum of the file.
+- `md5` The md5 sum of the file. The md5 sum may be explicitly specified as `none`
 
 Files may optionally define a `size` attribute listing the approximate size of the file with standard prefixes.
 
