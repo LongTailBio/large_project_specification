@@ -21,6 +21,14 @@ cd large_project_specification
 python setup.py install
 ```
 
+
+## Use
+
+Validate a Schema
+```
+llps validate my-project.llps.yaml
+```
+
 ## The Specification
 
 A project file is a [YAML](https://yaml.org/spec/1.2/spec.html) file that defines certain metadata about the project, sources for files, and the files themselves. The specification is detailed in `specification.md`
