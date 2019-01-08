@@ -24,9 +24,19 @@ python setup.py install
 
 ## Use
 
-Validate a Schema
+Validate a schema
 ```
 llps validate my-project.llps.yaml
+```
+
+Create a new schema
+```
+llps new <project_name> > my-project.llps.yaml
+```
+
+Add files to an existing schema
+```
+llps add-files <source> my-project.llps.yaml <file>[<file>...] > new-project.llps.yaml
 ```
 
 ## The Specification
