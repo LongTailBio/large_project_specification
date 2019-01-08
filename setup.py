@@ -2,6 +2,7 @@ import setuptools
 
 requirements = [
     'pyyaml',
+    'click',
 ]
 
 
