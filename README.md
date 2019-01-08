@@ -1,7 +1,7 @@
 # Longtail Large Project Specification
 
 [![PyPi](https://img.shields.io/pypi/v/llps.svg)](https://pypi.org/project/llps/)
-[![CircleCI](https://circleci.com/gh/dcdanko/llps.svg?style=svg)](https://circleci.com/gh/dcdanko/llps)
+[![CircleCI](https://circleci.com/gh/LongTailBio/large_project_specification.svg?style=svg)](https://circleci.com/gh/LongTailBio/large_project_specification)
 
 Bioinformatics projects are often composed of a large number of very heavy flat files. Managing these files is non trivial since operations take a long time and data loss is unacceptable. Because of the size of many of the files involved many typical tools for project management are not viable.
 
