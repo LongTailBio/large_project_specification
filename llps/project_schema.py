@@ -32,7 +32,7 @@ class ProjectSchema:
             try:
                 setattr(self, key, kwargs[key])
             except KeyError:
-                raise InvalidLLPSException(f'Missing required key {key}')
+                raise InvalidLLPSException(f'Missing required key "{key}"')
         for key in OPTIONAL_KEYS:
             setattr(self, key, kwargs.get(key, None))
 
@@ -82,7 +82,7 @@ class ProjectSchema:
     def validate_file(self, file_schema):
         """Validate a file schema."""
         try:
-            file_schema['path']
+            filepath = file_schema['path']
             file_schema['md5']
         except KeyError:
             raise InvalidLLPSException('Missing a required key in a file schema')
@@ -92,7 +92,7 @@ class ProjectSchema:
             if source_name in file_schema:
                 num_sources += 1
         if not num_sources:
-            raise InvalidLLPSException(f'No valid sources present for file {file_schema['path']}')
+            raise InvalidLLPSException(f'No valid sources present for file {filepath}')
 
     def dump(self):
         """Dump this Project Schema to YAML."""

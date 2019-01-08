@@ -1,4 +1,4 @@
-project: MetaSUB
+project_name: MetaSUB
 project_description: A global consortium to understand bacteria in the subways of the world
 version: v1.0.0
 spec_version: v0.1.0
