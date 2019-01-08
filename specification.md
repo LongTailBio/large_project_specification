@@ -20,11 +20,38 @@ A project file should use the extension `.llps.yaml`
 
 ### Sources
 
-Sources define where data is stored for a given project. Sources itself is a map from `source_name -> source_definition`. `source_definition` may be (almost) any valid YAML but is intended to minimally define a storage location. The exception is that each `source_definition` must define a `file_schema`, a map from keys ([a-zA-Z0-9_-], case insensitive) to value types. Every file with the given source is expected to fulfill this schema.
+Sources define where data is stored for a given project. Sources itself is a map from `source_name -> definiton`. Sources may not be named any of the reserved key names. All spec files must declare at least one source.
 
-Sources may not be named any of the reserved key names.
+Each source must declare a `type` which must be one of the following:
+- s3
+- local
+- tarball
 
-Note that `file_schema` may actually be empty in which case it will serve solely as a flag to indicate that a file should be found at a given source. Not all files must be present in every source. 
+Depending on the `type` the source must declare additional keys.
+
+#### S3
+Source keys:
+- `bucket_name`, the name of the bucket
+- `endpoint_url`, optionally specify an endpoint url. Defaults to aws
+
+File keys:
+- `remote_path`: optionally specify a path for the file within an s3 bucket. Defaults to `path`. It is not recomended to use a different path.
+
+#### Local
+Source keys:
+- `hostname` the hostname of the system
+- `root_dir` the directory from which all paths should be interpreted
+
+File keys:
+_None_
+
+#### Tarball
+Source keys:
+- `file`, A file spec (see below) where the tarball can be found. Must rely on a different source.
+
+File keys:
+- `remote_path`: optionally specify a path for the file within the tarball. Defaults to `path`. It is not recomended to use a different path.
+ 
 
 ### Files
 
