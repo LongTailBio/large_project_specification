@@ -59,5 +59,22 @@ def cli_new_schema(project_name):
     click.echo(project_schema.dump())
 
 
+@main.command('remove-files')
+@click.argument('schema')
+@click.argument('filepaths', nargs=-1)
+def cli_remove_files_from_schema(schema, filepaths):
+    """Add files to the specified project. Write the result to stdout."""
+    project_schema = ProjectSchema.from_file(schema)
+    indexed_files = {
+        file_schema['path']: file_schema for file_schema in project_schema.files
+    }
+    with click.progressbar(filepaths) as bar:
+        for filepath in bar:
+            if filepath in indexed_files:
+                del indexed_files[filepath]
+    project_schema.files = list(indexed_files.values())
+    click.echo(project_schema.dump())
+
+
 if __name__ == '__main__':
     main()
