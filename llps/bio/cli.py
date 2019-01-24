@@ -49,8 +49,8 @@ def add_fastx(sample_names, source, schema, err_file, filenames):
     project_schema = ProjectSchema.from_file(schema)
     existing_filepaths = {file_schema['path'] for file_schema in project_schema.files}
     filepaths = [
-        abspath(filename) for filename in filenames
-        if abspath(filename) not in existing_filepaths
+        filename for filename in filenames
+        if filename not in existing_filepaths
     ]
     logger, build_schema = get_file_logger(err_file), get_schema_builder(source)
     if sample_names:

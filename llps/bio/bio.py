@@ -35,7 +35,7 @@ def get_lines_in_file(filename, logger, gzipped=False):
 
 def process_one_fastx(filename, logger):
     """Return the number of lines in the file."""
-    expected_lines = 2
+    expected_lines = 1
     for ext in ['.fq', '.fastq']:
         if ext in filename:
             expected_lines = 4
