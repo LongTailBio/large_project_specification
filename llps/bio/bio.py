@@ -24,7 +24,7 @@ def get_lines_in_file(filename, logger, gzipped=False):
     """
     cmd = 'gunzip -c' if gzipped else 'cat'
     try:
-        line_count = run_cmd(f'set -o pipefail &&  {cmd} {filename}| wc -l')
+        line_count = run_cmd(f'/bin/bash -c "wc -l <({cmd} {filename})"').split()[0]
         return int(line_count)
     except CalledProcessError:
         if gzipped:
