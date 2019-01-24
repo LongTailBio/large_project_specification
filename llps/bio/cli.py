@@ -54,9 +54,10 @@ def add_fastx(sample_names, source, schema, err_file, filenames):
     ]
     logger, build_schema = get_file_logger(err_file), get_schema_builder(source)
     if sample_names:
-        schema = add_named_fastx_to_schema(schema, filepaths, logger, build_schema)
+        schema = add_named_fastx_to_schema(project_schema, filepaths, logger, build_schema)
     else:
-        schema = add_unnamed_fastx_to_schema(schema, filepaths, logger, build_schema)
+        schema = add_unnamed_fastx_to_schema(project_schema, filepaths, logger, build_schema)
+    click.echo(project_schema.dump())
 
 
 if __name__ == '__main__':
