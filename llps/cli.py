@@ -5,11 +5,15 @@ from .project_schema import ProjectSchema
 from .exceptions import InvalidLLPSException
 from .utils import md5_sum
 from .constants import CURRENT_SPEC_VERSION
+from .bio.cli import bio_cli
 
 
 @click.group()
 def main():
     pass
+
+
+main.add_command(bio_cli)
 
 
 @main.command('validate')

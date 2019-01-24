@@ -1,8 +1,13 @@
 
-from subprocess import check_output
+from subprocess import check_output, run, PIPE
+
+
+def run_cmd(cmd):
+    process = run(cmd, shell=True, stdout=PIPE, check=True)
+    return process.stdout.decode('utf-8')
 
 
 def md5_sum(filename):
     cmd = f'openssl md5 -binary {filename} | base64'
-    checksum = check_output(cmd, shell=True).decode('utf-8').strip()
+    checksum = run_cmd(cmd).strip()
     return checksum

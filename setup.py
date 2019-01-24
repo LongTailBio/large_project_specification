@@ -8,7 +8,7 @@ requirements = [
 
 setuptools.setup(
     name="llps",
-    version="0.4.0",
+    version="0.5.0",
     url="https://github.com/LongTailBio/large_project_specification",
     author="David C. Danko",
     author_email="dev@longtailbio.com",
